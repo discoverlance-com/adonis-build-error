@@ -8,5 +8,10 @@
 */
 
 import router from '@adonisjs/core/services/router'
-router.on('/').renderInertia('home', { version: 6 })
+import { middleware } from '#start/kernel'
 
+const HomeController = () => import('#controllers/home_controller')
+
+router.get('/', [HomeController, 'home']).use(middleware.guest()).as('home')
+// make dashboard a guest route for test
+router.get('/portal', [HomeController, 'portal']).use(middleware.guest()).as('portal')

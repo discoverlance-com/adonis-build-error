@@ -1,7 +1,7 @@
 import app from '@adonisjs/core/services/app'
 import { HttpContext, ExceptionHandler } from '@adonisjs/core/http'
 import type { StatusPageRange, StatusPageRenderer } from '@adonisjs/core/types/http'
-
+import { errors as authErrors } from '@adonisjs/auth'
 export default class HttpExceptionHandler extends ExceptionHandler {
   /**
    * In debug mode, the exception handler will display verbose errors
@@ -30,6 +30,19 @@ export default class HttpExceptionHandler extends ExceptionHandler {
    * response to the client
    */
   async handle(error: unknown, ctx: HttpContext) {
+    if (error instanceof authErrors.E_UNAUTHORIZED_ACCESS) {
+      ctx.session.flash('notification', {
+        type: 'error',
+        message: error.message,
+      })
+    }
+    if (error instanceof authErrors.E_INVALID_CREDENTIALS) {
+      ctx.session.flash('notification', {
+        type: 'error',
+        message: error.message,
+      })
+    }
+
     return super.handle(error, ctx)
   }
 

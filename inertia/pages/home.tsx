@@ -1,18 +1,19 @@
-import { Head } from '@inertiajs/react'
+import { Head, Link } from '@inertiajs/react'
+import { Button } from 'primereact/button'
 
 export default function Home(props: { version: number }) {
   return (
-    <>
+    <div className="flex flex-column justify-content-center align-items-center h-screen">
       <Head title="Homepage" />
 
-      <div className="container">
-        <div className="title">AdonisJS {props.version} x Inertia x React</div>
+      <div className="flex flex-column justify-content-center align-items-center">
+        <h1 className="mb-5">AdonisJS {props.version} x Inertia x React</h1>
 
-        <span>
-          Learn more about AdonisJS and Inertia.js by visiting the{' '}
-          <a href="https://docs.adonisjs.com/guides/inertia">AdonisJS documentation</a>.
-        </span>
+        <Button icon="pi pi-user" label="Welcome" className="mb-5" />
+        <Link href="/portal" className="font-bold no-underline p-button">
+          Go To Portal
+        </Link>
       </div>
-    </>
+    </div>
   )
 }
