@@ -1,4 +1,3 @@
-import { InputText } from 'primereact/inputtext'
 import { Menubar } from 'primereact/menubar'
 import type { MenuItem } from 'primereact/menuitem'
 import type React from 'react'
