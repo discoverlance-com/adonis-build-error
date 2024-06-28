@@ -3,7 +3,7 @@ import { usePage } from '@inertiajs/react'
 import { BreadCrumb } from 'primereact/breadcrumb'
 import type { MenuItem } from 'primereact/menuitem'
 import { useEffect, useState } from 'react'
-import string from '@adonisjs/core/helpers/string'
+import { titleCase } from '~/utils/string/change_case'
 
 interface Props {
   items?: MenuItem[]
@@ -19,7 +19,7 @@ const convertBreadcrumb = (title: string): string => {
 
   transformedTitle = transformedTitle.replace(/-/g, ' ')
 
-  return string.titleCase(decodeURI(transformedTitle))
+  return titleCase(decodeURI(transformedTitle))
 }
 
 export const BreadCrumbs = ({ items, home }: Props) => {
