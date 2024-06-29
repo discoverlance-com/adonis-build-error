@@ -8,5 +8,5 @@
       "~/*": ["./*"]
     }
   },
-  "include": ["./**/*.ts", "./**/*.tsx", "utils/string/randomBytes.js"]
+  "include": ["./**/*.ts", "./**/*.tsx"]
 }
