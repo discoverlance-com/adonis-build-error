@@ -21,9 +21,11 @@ createInertiaApp({
 
   title: (title) => `${title} - ${appName}`,
 
-  resolve: (name) => {
-    const pages = import.meta.glob('../pages/**/*.tsx') // 👈 no eager: true
-    let page = pages[`../pages/${name}.tsx`]
+  resolve: async (name) => {
+    const page = await resolvePageComponent(
+      `../pages/${name}.tsx`,
+      import.meta.glob('../pages/**/*.tsx')
+    )
     //@ts-ignore
     page.default.layout = name.startsWith('portal/')
       ? //@ts-ignore
