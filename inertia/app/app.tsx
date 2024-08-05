@@ -4,6 +4,7 @@
 import { createRoot } from 'react-dom/client'
 import { createInertiaApp } from '@inertiajs/react'
 import { PrimeReactProvider } from 'primereact/api'
+import { resolvePageComponent } from '@adonisjs/inertia/helpers'
 
 import 'primereact/resources/themes/lara-light-teal/theme.css'
 import 'primereact/resources/primereact.min.css' //core css
@@ -21,7 +22,7 @@ createInertiaApp({
   title: (title) => `${title} - ${appName}`,
 
   resolve: (name) => {
-    const pages = import.meta.glob('../pages/**/*.tsx', { eager: true })
+    const pages = import.meta.glob('../pages/**/*.tsx') // 👈 no eager: true
     let page = pages[`../pages/${name}.tsx`]
     //@ts-ignore
     page.default.layout = name.startsWith('portal/')
